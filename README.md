@@ -1,5 +1,15 @@
 # Django Interview Task
 
+## Live demo
+
+Live demo is available at [https://skrepka.demo.zayats.dev/](https://skrepka.demo.zayats.dev/)
+
+Admin panel is available at [https://skrepka.demo.zayats.dev/admin/](https://skrepka.demo.zayats.dev/admin/)
+
+Credentials:
+- username: ```admin```
+- password: ```admin```
+
 ## Installation
 
 ### Local
