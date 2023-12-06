@@ -1,0 +1,73 @@
+version: '3.9'
+
+x-database-variables: &database-variables
+  POSTGRES_DB: dev
+  POSTGRES_USER: dev
+  POSTGRES_PASSWORD: dev
+
+
+x-app-variables: &app-variables
+  <<: *database-variables
+  POSTGRES_HOST: db  # container name
+
+
+services:
+  api:
+    build: .
+    environment:
+      <<: *app-variables
+      WORKERS: 4
+    command: make run.server.prod
+    ports:
+      - "${PORT}:80"
+    depends_on:
+      - db
+      - migrate
+      - collectstatic
+    restart: always
+    volumes:
+      - .:/app
+    networks:
+      - apibackend
+
+  migrate:
+    build: .
+    environment:
+      <<: *app-variables
+    command: make migrate
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    networks:
+      - apibackend
+
+  collectstatic:
+    build: .
+    environment:
+      <<: *app-variables
+    command: make collectstatic
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    networks:
+      - apibackend
+
+  db:
+    image: postgres:latest
+    environment: *database-variables
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - apibackend
+
+networks:
+  apibackend:
+    ipam:
+      driver: default
+
+volumes:
+  postgres-data:
+  traefik-public-certificates:

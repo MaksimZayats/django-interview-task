@@ -1,0 +1,11 @@
+from __future__ import annotations
+
+from django.db import models
+
+
+class Example{{ camel_case_app_name }}Model(models.Model):
+    """Example model for {{ app_name }} app."""
+
+    def __str__(self) -> str:
+        """Return string representation of the model."""
+        return self.pk

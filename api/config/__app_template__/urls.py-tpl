@@ -1,0 +1,5 @@
+from __future__ import annotations
+
+from api.{{ app_name }} import views
+
+urlpatterns = []
