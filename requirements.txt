@@ -10,7 +10,7 @@ djangorestframework==3.14.0
 djangorestframework_simplejwt==5.3.1
 drf-spectacular==0.26.5
 gunicorn==21.2.0
-psycopg[c]==3.1.14
+psycopg[c]==3.1.17
 pyjwt==2.8.0
 python-dotenv==1.0.0
 pytz==2023.3.post1
